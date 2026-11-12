@@ -7,12 +7,15 @@ This Skill adapts the evidence-first, budget-aware logic of the original Codex p
 ## Coordinator versus worker
 
 - The **main session** owns the user's objective, task allocation, risk and authorization decisions, reconciliation, critical independent verification and final delivery.
+- **Fable 5.2** is the preferred main-session coordinator when the user selects it and the host permits it. Opus is an explicit fallback when Fable is unavailable or paid credits are unwanted.
 - **Haiku** handles deterministic work with sufficiently explicit schemas and examples.
 - **Sonnet medium** handles bounded technical research or implementation.
 - **Sonnet high** handles difficult reasoning or independent review when justified.
 - **Opus high** is an optional rare second opinion, not a required role.
 
 The coordinator may be manager-led when the user requests it, but zero direct work is neither possible nor desirable: brief formulation, verification and integration consume main-model usage.
+
+The coordinator may author a native workflow definition as coordination work. When a Dynamic Workflow runs, the native runtime owns its stages and the coordinator verifies the integrated outcome. Do not dispatch an independent team to repeat workflow stages. The Skill's staffing and model instructions are advisory; host permissions, model restrictions, and workflow settings determine actual behavior. See [ULTRACODE.md](ULTRACODE.md).
 
 ## Responsibility matrix
 

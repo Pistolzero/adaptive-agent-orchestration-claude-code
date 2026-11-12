@@ -11,6 +11,7 @@ The valid answer to "How many delegates?" is often **zero**.
 7. If a required approval is blocked, proceed on safe independent work, but never treat the approval as granted.
 8. Do not spawn chains of subagents recursively to evade fan-out caps. Nested or agent-team features, if used at all, count toward the user-defined total-policy intention.
 9. Track actually launched agents, not planned prompts or static files.
+10. When a native workflow owns execution, include its stage agents in the desired total. Do not create a parallel independent team. Claude Code's workflow size guideline is not an enforceable cap.
 
 ## Typical choices
 

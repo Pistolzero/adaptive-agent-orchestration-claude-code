@@ -14,7 +14,7 @@ EXPECTED_ROLES = {
 EXPECTED_REFS = {
     'brief-templates.md', 'budget-policy.md', 'dynamic-team-sizing.md',
     'failure-and-evidence-report.md', 'quality-and-budget.md',
-    'routing-matrix.md',
+    'routing-matrix.md', 'workflow-mode.md',
 }
 
 
@@ -61,7 +61,7 @@ class TestPackage(unittest.TestCase):
                   'CONTRIBUTING.md', 'SECURITY.md',
                   'docs/INSTALL.md', 'docs/DESIGN.md',
                   'docs/OPERATIONS.md', 'docs/SECURITY.md',
-                  'docs/PUBLISH.md', 'examples/USAGE.md'):
+                  'docs/PUBLISH.md', 'docs/ULTRACODE.md', 'examples/USAGE.md'):
             self.assertTrue((ROOT / p).is_file(), p)
         readme = (ROOT / 'README.md').read_text(encoding='utf-8')
         for target in re.findall(r'\]\((docs/[^)]+\.md|examples/[^)]+\.md|LICENSE)\)', readme):
@@ -73,6 +73,21 @@ class TestPackage(unittest.TestCase):
         for p in ROOT.rglob('*.md'):
             text = p.read_text(encoding='utf-8')
             self.assertNotIn('model_reasoning_effort =', text)
+
+    def test_workflow_policy_and_local_links(self):
+        skill = (SKILL / 'SKILL.md').read_text(encoding='utf-8')
+        guide = (ROOT / 'docs' / 'ULTRACODE.md').read_text(encoding='utf-8')
+        self.assertIn('claude-fable-5-2', guide)
+        self.assertIn('UNVERIFIED', guide)
+        self.assertIn('do not launch a second independent fleet', skill)
+        for path in ROOT.rglob('*.md'):
+            body = path.read_text(encoding='utf-8')
+            for target in re.findall(r'\]\(([^)]+)\)', body):
+                if '://' in target or target.startswith('#'):
+                    continue
+                relative = target.split('#', 1)[0]
+                if relative:
+                    self.assertTrue((path.parent / relative).is_file(), (path, target))
 
 
 if __name__ == '__main__':
