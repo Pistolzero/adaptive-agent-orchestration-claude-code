@@ -1,0 +1,12 @@
+# Editor, cache, and local-only configuration
+.DS_Store
+Thumbs.db
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+*.log
