@@ -12,6 +12,7 @@ This is a **decision aid**, not a mandatory team roster.
 | Consequential diff or test verification | Independent reviewer | `aao-reviewer` | Sonnet high | Do not trust builder summary blindly |
 | High-stakes independent adjudication | Main + optional reviewer | `aao-critical-reviewer` | Opus high | Use sparingly; approval remains with main/user |
 | Architecture, permissions, deployment, purchases | Main | Evidence-gathering delegates only | User-selected main model | Never transfer real authorizations |
+| Staged work with independent verification | Native Dynamic Workflow, when chosen | Workflow-owned stages | Explicit Haiku/Sonnet stage models | No competing custom-agent fleet; inspect actual models and total stages |
 
 ## Algorithm
 
@@ -26,7 +27,8 @@ This is a **decision aid**, not a mandatory team roster.
 ## Native Claude Code notes
 
 - An agent definition uses **Markdown plus YAML frontmatter**, not Codex TOML.
-- `model: haiku|sonnet|opus|inherit` and `effort: low|medium|high...` depend on model and client version. Do not hardcode future model version numbers without a reason.
+- `model: haiku|sonnet|opus|fable|inherit` and `effort: low|medium|high...` depend on model and client version. Fable 5.2 is preferred for the parent session through `/model`, not through a worker preset.
 - Project agents live at `.claude/agents/`; global agents at `~/.claude/agents/`. Skills live separately at `.claude/skills/` or `~/.claude/skills/`.
 - The `Agent` tool and supported subagent features are provided by Claude Code; the Skill doesn't implement them.
 - Third-party orchestration plugins (including Superpowers) may propose separate planning or delegation. Choose **one owner** for task allocation rather than duplicate planning and reviews.
+- A workflow stage's requested model takes precedence over custom-agent frontmatter unless forced environment model settings or account restrictions change resolution. See [workflow-mode.md](workflow-mode.md).

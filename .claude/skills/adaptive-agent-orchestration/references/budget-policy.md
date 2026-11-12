@@ -25,13 +25,15 @@ These bands are policy suggestions only. They do not map to token counts. Provid
 
 ## Routing with a budget
 
-- Main agent: preserve the selected model and effort; delegate expensive bounded work rather than transferring final responsibility.
+- Main agent: prefer Fable 5.2 when selected and available, or an explicitly selected Opus fallback; delegate expensive bounded work rather than transferring final responsibility. The Skill cannot set the session model.
 - `aao-bulk-analyst`: Haiku low; precise, repeatable extraction. Bad input or ambiguous rules require escalation.
 - `aao-researcher` / `aao-builder`: Sonnet medium by default. Reusing one good worker is often cheaper than serially spawning many.
 - `aao-researcher-deep` / `aao-reviewer`: Sonnet high for difficult analysis or material verification.
 - `aao-critical-reviewer`: Opus high only for consequential independent review with a credible expected benefit.
 
 A role's configured model/effort is not guaranteed to run unchanged: per-invocation options, environment settings, account restrictions, provider routing and version-specific fallback may intervene. Report actual resolution only when observable. Check `/tasks` if supported.
+
+For a native workflow, count stage agents toward the planned staffing budget, specify smaller models explicitly, and inspect `/workflows` for actual usage. `workflowSizeGuideline=small` is advisory; ultracode can plan more than one workflow per request and can consume much more usage. Do not turn on paid Fable credits or start a large workflow merely to satisfy this policy.
 
 ## Keep consumption bounded
 

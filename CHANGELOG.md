@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 — 2026-11-12
+
+- Documented Fable 5.2 as a preferred, user-selected manager and an explicit Opus fallback.
+- Added one-owner routing for optional native Dynamic Workflows, with stage model precedence and cost guidance.
+- Added a focused live compatibility matrix. Live Claude Code integration remains unverified in this release.
+
 ## 1.0.1 — 2026-11-12
 
 - Clarified the per-task delegation cap in CONSERVE and UNKNOWN and the handling of unchanged permission and quota blockers.

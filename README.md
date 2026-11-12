@@ -4,7 +4,7 @@
 
 **A general-purpose, budget-aware delegation policy for Claude Code.** Choose the smallest useful team, route bounded tasks to appropriate Claude models, require candid failure reports, and verify delegated work before claiming success.
 
-> Version **1.0.1** · Instruction-based Skill and optional native Claude Code subagents · **English-only documentation** · No extra dependencies or background processes required. This is an independent community project, **not affiliated with or endorsed by Anthropic**.
+> Version **1.1.0** · Instruction-based Skill and optional native Claude Code subagents · **English-only documentation** · No extra dependencies or background processes required. This is an independent community project, **not affiliated with or endorsed by Anthropic**.
 >
 > Adapted from the original [Adaptive Agent Orchestration for Codex](https://github.com/Pistolzero/adaptive-agent-orchestration) project. The original Codex repository remains unchanged.
 
@@ -12,7 +12,8 @@
 
 - **Adaptive team size:** 0, 1, or 2 delegates for typical work; up to 3 when independent tasks and confirmed budget justify it. No automatic fleet for trivial tasks.
 - **Claude-native subagents:** optional `.claude/agents/*.md` presets with **Haiku**, **Sonnet**, and a conditional **Opus** reviewer. Each preset pins its own supported `model` and `effort` where available.
-- **Manager-led operation:** the user's main-session model remains their choice; it plans, routes, adjudicates important contradictions, and verifies outcomes. Bounded execution can be delegated rather than duplicating long research in the main context.
+- **Preferred Fable 5.2 manager:** when selected and available, Fable coordinates and checks evidence while bounded work goes to Haiku or Sonnet. The user selects the main model in Claude Code. An explicit Opus fallback is available.
+- **Optional native workflows:** use Claude Code Dynamic Workflows for useful staged work, with one execution owner and no duplicate agent fleet. Live coexistence remains unverified until tested in Claude Code.
 - **Budget awareness:** `QUALITY`, `BALANCED`, `CONSERVE`, `CRITICAL`, and `UNKNOWN` modes. Never guesses subscription quotas or token savings.
 - **Mandatory transparency:** every delegate reports attempted work, failed attempts (including recovered errors), omitted checks, changes, evidence, and open risks.
 - **Safe autonomy:** independent read-only analysis may proceed without repeated questions. System, account, network, purchase, production, and destructive actions still require the approvals and permissions that apply to the environment.
@@ -22,7 +23,7 @@
 
 1. Download and extract the repository.
 2. Follow the [Windows PowerShell installation steps](docs/INSTALL.md#windows-powershell--safe-copy-for-all-projects) or use a project-only installation.
-3. Start Claude Code in the target project. Use `/adaptive-agent-orchestration` and include the task you want completed.
+3. Start Claude Code in the target project. Select Fable 5.2 with `/model fable` if your runtime and plan permit it, then use `/adaptive-agent-orchestration` with your task.
 4. Use `/agents` to confirm discovery. For one delegated read-only task, see the [installation check](docs/INSTALL.md#verify-without-wasting-many-model-requests).
 
 ### Project-only installation
@@ -35,7 +36,7 @@ For safe Windows copying with an existing agent directory, see [Installation gui
 
 | Work | Delegate | Model | Effort |
 | --- | --- | --- | --- |
-| Tiny/serial task or critical final decision | Main session | User-selected | User-selected |
+| Coordination and critical final decision | Main session | Fable 5.2 preferred when selected, explicit Opus fallback | User-selected |
 | Deterministic extraction / classification | `aao-bulk-analyst` | `haiku` | `low` |
 | Scoped documentation or technical research | `aao-researcher` | `sonnet` | `medium` |
 | Complex research and edge cases | `aao-researcher-deep` | `sonnet` | `high` |
@@ -45,6 +46,8 @@ For safe Windows copying with an existing agent directory, see [Installation gui
 | High-stakes second opinion when justified | `aao-critical-reviewer` | `opus` | `high` |
 
 Model aliases resolve to versions supported by the provider and may change. Unsupported or restricted combinations can fall back. **Do not assert the actual model until observed.** The Opus reviewer is optional and expensive; it is *not* automatically required. These are presets, not a required team.
+
+The Skill cannot set the main session's model. Fable 5.2 requires Claude Code v2.1.321 or later and may require usage credits on some plans. See [Fable and UltraCode compatibility](docs/ULTRACODE.md) for selection, workflow ownership, routing precedence, and live-test status.
 
 ## Budget modes
 
@@ -75,14 +78,16 @@ These bands are **custom heuristics**, not official Claude usage thresholds. `/u
 - Claude Code's `maxTurns` and `effort` settings are version/model dependent. Use `/agents`, `/tasks`, and `/usage` to verify actual behavior where supported.
 - Prompt instructions never override real permissions or approvals. An allowed tool such as `Bash`/`PowerShell` can still perform material changes; permissions must be set outside this Skill.
 - The included Skill and agents **have not been executed on the user's Windows Claude Code installation**. Static package validation does not establish live runtime compatibility.
+- Fable manager behavior, actual worker models, and native Dynamic Workflow integration are **UNVERIFIED** until a live Claude Code smoke test succeeds.
 
 ## Documentation
 
 - [Install and verify](docs/INSTALL.md)
 - [Architecture and conflict prevention](docs/DESIGN.md)
 - [Budget and operations](docs/OPERATIONS.md)
+- [Fable and UltraCode compatibility](docs/ULTRACODE.md)
 - [Security and trust](docs/SECURITY.md)
-- [Publishing a separate GitHub repository](docs/PUBLISH.md)
+- [Publishing updates](docs/PUBLISH.md)
 - [Usage examples](examples/USAGE.md)
 
 ## License

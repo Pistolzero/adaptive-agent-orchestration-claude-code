@@ -20,6 +20,7 @@ Optimize for **verified user value per total work**, not number of agents or the
 - Verify key claims, but avoid redundant rechecks when the evidence is already fresh and direct.
 - Stop a futile access loop; record the actual blocker and pursue independent safe work.
 - Do not claim persistent background activity when the session cannot do it.
+- In workflow mode, check actual stage count and usage in `/workflows`; policy instructions and size guidelines do not enforce a hard spending cap.
 
 ## Measuring improvement
 

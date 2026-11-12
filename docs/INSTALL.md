@@ -19,6 +19,8 @@ YOUR-PROJECT/
 
 Start a new Claude Code session in that project. Invoke `/adaptive-agent-orchestration` or request it by name. `/agents` should show the installed agent names. A displayed agent is *configured*, not proof that its model executed.
 
+For the preferred manager, use Claude Code v2.1.321 or later and select `/model fable`. Check the resolved model with `/model`. If your provider, plan, or credit setting prevents Fable, select `/model opus` explicitly for the fallback. The Skill cannot change the main model or authorize paid usage. See [Fable and UltraCode](ULTRACODE.md).
+
 ## Windows PowerShell — safe copy for all projects
 
 From a **PowerShell opened in the extracted repository root**, inspect the files first. The following copies only `.md` files; it does not touch `settings.json` or change Windows execution policy.
@@ -62,9 +64,9 @@ If you want only a limited set of roles, copy those `.md` files individually ins
 ## Compatibility and caveats
 
 - Claude Code uses **`.claude/agents/*.md` with YAML frontmatter**, not Codex's `.toml` role presets. Skills belong in `.claude/skills/` (or `~/.claude/skills/`).
-- These agent presets use `model: haiku|sonnet|opus` aliases and `effort: low|medium|high`. A particular version/account/provider may restrict those combinations; verify in the actual host. Environment-wide model/effort overrides may supersede role frontmatter.
+- These agent presets use `model: haiku|sonnet|opus` aliases and `effort: low|medium|high`. A particular version/account/provider may restrict those combinations; verify in the actual host. An invocation model overrides role frontmatter, while forced environment models or organization restrictions can change the effective worker model.
 - A Skill is not a mandatory always-on coordinator. If Superpowers or another workflow plugin is installed, designate **one** source of task-allocation policy to avoid duplicated agent waves.
 - Parent permissions, approval gates and tool restrictions apply. Never widen them solely to satisfy a Skill.
 - Claude Code cloud/remote contexts may not see files installed on your local Windows machine.
 
-Official upstream references: [Claude Code Skills](https://code.claude.com/docs/en/skills) and [Custom subagents](https://code.claude.com/docs/en/sub-agents).
+Official upstream references: [Claude Code Skills](https://code.claude.com/docs/en/skills), [Custom subagents](https://code.claude.com/docs/en/sub-agents), [Model configuration](https://code.claude.com/docs/en/model-config), and [Dynamic Workflows](https://code.claude.com/docs/en/workflows).

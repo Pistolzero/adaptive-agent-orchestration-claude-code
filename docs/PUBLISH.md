@@ -1,6 +1,6 @@
-# Publish as a separate GitHub repository
+# Publish updates to the existing GitHub repository
 
-Create an empty public repository named `adaptive-agent-orchestration-claude-code`. Use Git to commit and push the source, including the hidden `.claude/` tree. Keep the Codex edition in its own repository.
+Use the existing `Pistolzero/adaptive-agent-orchestration-claude-code` repository. Commit the source, including the hidden `.claude/` tree, on a working branch and review the pull request. Keep the Codex edition in its own repository.
 
 Before pushing, inspect `git ls-files -- .claude` and run the package suite from a fresh export of the exact commit being published. For example, from a Git shell:
 
